@@ -67,7 +67,7 @@
                 android:id="@+id/icon_menu"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_pen"
+                android:src="@drawable/ic_menu"
                 app:tint="@color/gray"
                 android:scaleType="centerInside"
                 android:layout_alignParentEnd="true"

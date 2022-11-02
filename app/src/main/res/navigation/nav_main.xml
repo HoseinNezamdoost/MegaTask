@@ -5,15 +5,21 @@
     android:id="@+id/nav_main"
     app:startDestination="@id/sign">
 
-    <fragment
-        android:id="@+id/sign"
-        android:name="com.nzd.megatask.view.SignFragment"
-        android:label="fragment_sign"
-        tools:layout="@layout/fragment_sign" />
-    <fragment
-        android:id="@+id/task"
-        android:name="com.nzd.megatask.view.TaskFragment"
-        android:label="fragment_task"
-        tools:layout="@layout/fragment_task" />
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/sign">
+        <fragment
+            android:id="@+id/sign"
+            android:name="com.nzd.megatask.view.SignFragment"
+            android:label="fragment_sign"
+            tools:layout="@layout/fragment_sign" />
+    </navigation>
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/task">
+        <fragment
+            android:id="@+id/task"
+            android:name="com.nzd.megatask.view.TaskFragment"
+            android:label="fragment_task"
+            tools:layout="@layout/fragment_task" />
+    </navigation>
 
 </navigation>

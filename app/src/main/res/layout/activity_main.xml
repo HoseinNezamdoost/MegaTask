@@ -23,19 +23,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="سه شنبه , 1401,8,2"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"/>
+                    android:layout_marginStart="20dp"
+                    android:text="سه شنبه , 1401,8,2"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_add"
-                    android:layout_marginEnd="20dp"/>
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_add" />
 
             </RelativeLayout>
 
@@ -46,11 +46,11 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="90dp"
         app:defaultNavHost="true"
-        android:layout_marginBottom="56dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:navGraph="@navigation/nav_main" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -78,7 +78,34 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
-        android:tint="@color/white"
-        app:layout_anchor="@id/bottomAppBar" />
+        app:layout_anchor="@id/bottomAppBar"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:contentDescription="@string/signs"
+        android:src="@drawable/ic_task"
+        android:visibility="gone"
+        app:fabSize="mini"
+        app:layout_anchor="@id/fab"
+        app:layout_anchorGravity="start"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:contentDescription="@string/task"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_pen"
+        android:visibility="gone"
+        app:fabSize="mini"
+        app:layout_anchor="@id/fab"
+        app:layout_anchorGravity="end"
+        app:tint="@android:color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

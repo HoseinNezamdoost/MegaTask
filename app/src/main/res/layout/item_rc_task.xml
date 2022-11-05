@@ -20,6 +20,16 @@
             android:backgroundTint="@color/white"
             android:background="@drawable/bg_rc_task">
 
+            <ImageView
+                android:id="@+id/addPriory"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_star"
+                app:tint="@color/gray"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"/>
+
             <TextView
                 android:id="@+id/prof_tv"
                 android:layout_width="wrap_content"
@@ -27,6 +37,7 @@
                 android:background="@drawable/bg_circle"
                 android:backgroundTint="@color/purple700"
                 tools:text="سل"
+                android:layout_toEndOf="@id/addPriory"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:padding="8dp"

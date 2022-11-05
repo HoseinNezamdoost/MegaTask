@@ -9,6 +9,7 @@
     <string name="task_description">جزییات کار</string>
     <string name="time">تعیین زمان</string>
     <string name="add">اضافه کن</string>
+    <string name="cancel">لغو کن</string>
 
     <string-array name="week_days">
         <item>شنبه</item>

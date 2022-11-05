@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nzd.megatask.R
+import com.nzd.megatask.common.DialogManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -56,6 +57,15 @@ class MainActivity : AppCompatActivity() {
 
         fab_task.setOnClickListener {
             Toast.makeText(this, "fab task", Toast.LENGTH_SHORT).show()
+            DialogManager
+                .TaskDialog(this)
+                .addToPriority {
+
+                }
+                .setOnClickListener {
+
+                }.build()
+
             fab.animate().setDuration(800).rotation(0f)
 
             fab_sign.visibility = View.GONE

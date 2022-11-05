@@ -4,4 +4,19 @@
     <string name="signs">نشانه ها</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="what_work_in_week">چه کاری رو باید توی این هفته انجام بدی!</string>
+    <string name="title_work">متن کلی کار</string>
+    <string name="task_description">جزییات کار</string>
+    <string name="time">تعیین زمان</string>
+    <string name="add">اضافه کن</string>
+
+    <string-array name="week_days">
+        <item>شنبه</item>
+        <item>یکشنبه</item>
+        <item>دوشنبه</item>
+        <item>سه شنبه</item>
+        <item>چهارشنبه</item>
+        <item>پنجشنبه</item>
+        <item>جمعه</item>
+    </string-array>
 </resources>

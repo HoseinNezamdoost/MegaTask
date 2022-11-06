@@ -1,5 +1,6 @@
 package com.nzd.megatask.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,7 +14,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nzd.megatask.R
 import com.nzd.megatask.common.DialogManager
+import com.nzd.megatask.common.KEY
+import com.nzd.megatask.dataClass.Tasks
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             if (isChecked) {
                 //fab.rotation += 45f
-                fab.animate().setDuration(800).rotation(0f)
+                fab.animate().setDuration(400).rotation(0f)
 
                 fab_sign.visibility = View.GONE
                 fab_task.visibility = View.GONE
@@ -46,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
             } else {
                 //fab.rotation -= 45f
-                fab.animate().setDuration(800).rotation(45f)
+                fab.animate().setDuration(400).rotation(45f)
 
                 fab_sign.visibility = View.VISIBLE
                 fab_task.visibility = View.VISIBLE
@@ -56,17 +60,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab_task.setOnClickListener {
-            Toast.makeText(this, "fab task", Toast.LENGTH_SHORT).show()
-            DialogManager
-                .TaskDialog(this)
+            // dialog task
+            val taskDialogManager = DialogManager.TaskDialog(this)
+            taskDialogManager
+                .setOnClickListener {
+                    val task = Tasks(
+                        taskDialogManager.getTitleTask(),
+                        taskDialogManager.getDescriptionTask(),
+                        taskDialogManager.getDayTask(),
+                        taskDialogManager.getPriority()
+                    )
+                    EventBus.getDefault().post(task)
+                }
                 .addToPriority {
 
                 }
-                .setOnClickListener {
+                .build()
 
-                }.build()
-
-            fab.animate().setDuration(800).rotation(0f)
+            fab.animate().setDuration(400).rotation(0f)
 
             fab_sign.visibility = View.GONE
             fab_task.visibility = View.GONE
@@ -75,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         fab_sign.setOnClickListener {
             Toast.makeText(this, "fab sign", Toast.LENGTH_SHORT).show()
-            fab.animate().setDuration(800).rotation(0f)
+            fab.animate().setDuration(400).rotation(0f)
 
             fab_sign.visibility = View.GONE
             fab_task.visibility = View.GONE

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -18,6 +19,7 @@ class DialogManager {
     class TaskDialog(val context: Context) {
         private val view =
             LayoutInflater.from(context).inflate(R.layout.item_dialog_task, null, false)
+        private var isChecked = false
 
         private val dialog = Dialog(context)
 
@@ -32,7 +34,7 @@ class DialogManager {
         }
 
         fun getDayTask(): String {
-            val myVar = view.findViewById<TextInputEditText>(R.id.chooseDay)
+            val myVar = view.findViewById<AutoCompleteTextView>(R.id.chooseDay)
             return myVar.text.toString()
         }
 
@@ -44,17 +46,24 @@ class DialogManager {
             return this
         }
 
+        fun getPriority() : Boolean{
+            return isChecked
+        }
+
         fun addToPriority(onClick: (view:View) -> Unit) : TaskDialog{
-            var isChecked = true
             val myVar = view.findViewById<ImageView>(R.id.icon_add_priority)
             myVar.setOnClickListener {
                 if (!isChecked){
-                    myVar.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star))
+                    myVar.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star_select))
                     isChecked = true
+                    Toast.makeText(context, "این کار به اولویت ها اضافه شد", Toast.LENGTH_SHORT).show()
+
                     onClick(it)
                 }else{
-                    myVar.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star_select))
+                    myVar.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star))
                     isChecked = false
+                    Toast.makeText(context, "این کار از اولویت ها حذف شد", Toast.LENGTH_SHORT).show()
+
                     onClick(it)
                 }
             }
@@ -68,7 +77,7 @@ class DialogManager {
             val week_days = context.resources.getStringArray(R.array.week_days)
             val arrayAdapter = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, week_days)
             view.findViewById<AutoCompleteTextView>(R.id.chooseDay).setAdapter(arrayAdapter)
-            dialog.setCancelable(true)
+            dialog.setCancelable(false)
             dialog.setContentView(view)
             dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
             dialog.show()

@@ -10,6 +10,10 @@
     <string name="time">تعیین زمان</string>
     <string name="add">اضافه کن</string>
     <string name="cancel">لغو کن</string>
+    <string name="done">انجام شد</string>
+    <string name="doing">در حال انجام</string>
+    <string name="delete">حذف کردن</string>
+    <string name="edit">ویرایش کردن</string>
 
     <string-array name="week_days">
         <item>شنبه</item>

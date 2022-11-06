@@ -46,4 +46,5 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation("org.greenrobot:eventbus:3.3.1")
 }

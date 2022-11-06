@@ -7,6 +7,7 @@ import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import com.nzd.megatask.dataClass.WeekDays
 
+const val KEY = "MegaTask"
 
 fun weekDay(): List<WeekDays> {
     val weekDays = arrayListOf<WeekDays>()

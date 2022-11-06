@@ -15,24 +15,23 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_dialog_task.view.*
 import kotlinx.android.synthetic.main.item_rc_task.view.*
 
-class TaskAdapter(val context: Context , val tasks:List<Tasks> , val actionTasksItems: ActionTasksItems) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(val context: Context, private val tasks:ArrayList<Tasks>, val actionTasksItems: ActionTasksItems) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
-        var isChecked = true
             fun bind(tasks: Tasks){
                 containerView.prof_tv.text = tasks.title.substring(0,2)
                 containerView.title_tv.text = tasks.title
                 containerView.description_tv.text = tasks.description
 
-                containerView.icon_add_priority.setOnClickListener {
-                    if (!isChecked){
-                        containerView.icon_add_priority.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star))
-                        isChecked = true
+                containerView.addPriory.setOnClickListener {
+                    if (!tasks.isPriory){
+                        containerView.addPriory.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star))
+                        tasks.isPriory = true
                         actionTasksItems.addToPriory()
                     }else{
-                        containerView.icon_add_priority.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star_select))
-                        isChecked = false
+                        containerView.addPriory.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star_select))
+                        tasks.isPriory = false
                         actionTasksItems.addToPriory()
                     }
                 }
@@ -71,4 +70,10 @@ class TaskAdapter(val context: Context , val tasks:List<Tasks> , val actionTasks
     override fun getItemCount(): Int {
         return tasks.size
     }
+
+    fun insert(task: Tasks){
+        tasks.add(task)
+        notifyItemInserted(tasks.size-1)
+    }
+
 }

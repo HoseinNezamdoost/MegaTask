@@ -65,15 +65,12 @@ class MainActivity : AppCompatActivity() {
             taskDialogManager
                 .setOnClickListener {
                     val task = Tasks(
-                        taskDialogManager.getTitleTask(),
-                        taskDialogManager.getDescriptionTask(),
-                        taskDialogManager.getDayTask(),
-                        taskDialogManager.getPriority()
+                        title = taskDialogManager.getTitleTask(),
+                        description = taskDialogManager.getDescriptionTask(),
+                        date = taskDialogManager.getDayTask(),
+                        isPriory = taskDialogManager.getPriority()
                     )
                     EventBus.getDefault().post(task)
-                }
-                .addToPriority {
-
                 }
                 .build()
 

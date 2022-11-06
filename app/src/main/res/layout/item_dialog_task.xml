@@ -18,21 +18,11 @@
             android:background="@drawable/bg_selector">
 
             <ImageView
-                android:id="@+id/icon_add_priority"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_star"
-                android:scaleType="centerInside"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="12dp"/>
-
-            <ImageView
                 android:id="@+id/icon_dialog"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/icon_add_priority"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
                 android:src="@drawable/ic_task" />
 
             <TextView
@@ -102,6 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/time"
+                    android:inputType="none"
                     android:padding="8dp"
                     android:textColor="@color/gray"/>
 

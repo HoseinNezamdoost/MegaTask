@@ -50,26 +50,6 @@ class DialogManager {
             return isChecked
         }
 
-        fun addToPriority(onClick: (view:View) -> Unit) : TaskDialog{
-            val myVar = view.findViewById<ImageView>(R.id.icon_add_priority)
-            myVar.setOnClickListener {
-                if (!isChecked){
-                    myVar.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star_select))
-                    isChecked = true
-                    Toast.makeText(context, "این کار به اولویت ها اضافه شد", Toast.LENGTH_SHORT).show()
-
-                    onClick(it)
-                }else{
-                    myVar.setImageDrawable(ContextCompat.getDrawable(context , R.drawable.ic_star))
-                    isChecked = false
-                    Toast.makeText(context, "این کار از اولویت ها حذف شد", Toast.LENGTH_SHORT).show()
-
-                    onClick(it)
-                }
-            }
-            return this
-        }
-
         fun build() {
             view.findViewById<MaterialButton>(R.id.cancelBtn).setOnClickListener {
                 dialog.dismiss()

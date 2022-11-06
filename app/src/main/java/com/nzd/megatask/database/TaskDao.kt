@@ -18,6 +18,9 @@ interface TaskDao {
     @Query("SELECT * FROM tasks")
     fun getAll(): List<Tasks>
 
+    @Query("UPDATE tasks SET isDown =:isDone WHERE id =:id")
+    fun updateToDone(id: Int , isDone:Boolean)
+
     @Query("UPDATE tasks SET title = :title , description = :description , date = :date , isPriory = :isPriory WHERE id = :id")
     fun update(id: Int, title: String, description: String, date: String, isPriory: Boolean): Int
 

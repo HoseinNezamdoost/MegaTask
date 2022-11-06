@@ -54,23 +54,23 @@ class TaskFragment : Fragment() , ActionTasksItems {
         return view
     }
 
-    override fun addToPriory() {
-        Toast.makeText(requireContext(), "addToPriory", Toast.LENGTH_SHORT).show()
+    override fun addToPriory(tasks: Tasks) {
+
     }
 
-    override fun done() {
-        Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
+    override fun done(tasks: Tasks) {
+        database.getDao().updateToDone(tasks.id , tasks.isDown)
     }
 
-    override fun doing() {
+    override fun doing(tasks: Tasks) {
         Toast.makeText(requireContext(), "doing", Toast.LENGTH_SHORT).show()
     }
 
-    override fun edit() {
+    override fun edit(tasks: Tasks) {
         Toast.makeText(requireContext(), "edit", Toast.LENGTH_SHORT).show()
     }
 
-    override fun delete() {
+    override fun delete(tasks: Tasks) {
         Toast.makeText(requireContext(), "delete", Toast.LENGTH_SHORT).show()
     }
 

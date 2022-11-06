@@ -9,6 +9,7 @@
     android:layout_margin="8dp">
 
     <RelativeLayout
+        android:id="@+id/background_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple700">
@@ -26,6 +27,7 @@
                 android:layout_height="32dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_star"
+                android:background="?selectableItemBackgroundBorderless"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"/>
 
@@ -39,8 +41,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_toEndOf="@id/addPriory"
                 android:gravity="center"
-                android:background="@drawable/bg_circle"
-                android:backgroundTint="@color/purple700"
+                android:background="@drawable/bg_circle_green"
                 android:padding="8dp"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -83,6 +84,7 @@
                 android:layout_height="32dp"
                 android:src="@drawable/ic_menu"
                 app:tint="@color/gray"
+                android:background="?selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"

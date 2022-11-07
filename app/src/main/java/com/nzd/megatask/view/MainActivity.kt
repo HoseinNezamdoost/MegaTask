@@ -1,23 +1,19 @@
 package com.nzd.megatask.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.RotateAnimation
 import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nzd.megatask.R
 import com.nzd.megatask.common.DialogManager
-import com.nzd.megatask.common.KEY
 import com.nzd.megatask.dataClass.Tasks
+import com.nzd.megatask.database.MegaSharedPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val sharedPreferences = MegaSharedPreferences(this)
+        var id = sharedPreferences.getId()
         //bottomNavigation
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(1).isEnabled = false
@@ -64,11 +62,14 @@ class MainActivity : AppCompatActivity() {
             val taskDialogManager = DialogManager.TaskDialog(this)
             taskDialogManager
                 .setOnClickListener {
+                    id += 1
+                    sharedPreferences.setId(id)
                     val task = Tasks(
-                        title = taskDialogManager.getTitleTask(),
-                        description = taskDialogManager.getDescriptionTask(),
-                        date = taskDialogManager.getDayTask(),
-                        isPriory = taskDialogManager.getPriority()
+                        id,
+                        taskDialogManager.getTitleTask(),
+                        taskDialogManager.getDescriptionTask(),
+                        taskDialogManager.getDayTask(),
+                        taskDialogManager.getPriority()
                     )
                     EventBus.getDefault().post(task)
                 }

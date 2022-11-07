@@ -7,9 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.nzd.megatask.R
@@ -28,14 +25,26 @@ class DialogManager {
             return myVar.text.toString()
         }
 
+        fun setTitleTask(title:String){
+            view.findViewById<TextInputEditText>(R.id.titleTask).setText(title)
+        }
+
         fun getDescriptionTask(): String {
             val myVar = view.findViewById<TextInputEditText>(R.id.descriptionTask)
             return myVar.text.toString()
         }
 
+        fun setDescriptionTask(description:String){
+            view.findViewById<TextInputEditText>(R.id.descriptionTask).setText(description)
+        }
+
         fun getDayTask(): String {
             val myVar = view.findViewById<AutoCompleteTextView>(R.id.chooseDay)
             return myVar.text.toString()
+        }
+
+        fun setDayTask(day:String){
+            view.findViewById<AutoCompleteTextView>(R.id.chooseDay).setText(day)
         }
 
         fun setOnClickListener(onClick: (view: View) -> Unit) :TaskDialog{

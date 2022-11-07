@@ -1,6 +1,6 @@
 package com.nzd.megatask.view
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,65 +14,89 @@ import com.nzd.megatask.R
 import com.nzd.megatask.adapter.TaskAdapter
 import com.nzd.megatask.adapter.WeekDaysAdapter
 import com.nzd.megatask.common.ActionTasksItems
-import com.nzd.megatask.common.KEY
+import com.nzd.megatask.common.DialogManager
 import com.nzd.megatask.common.weekDay
 import com.nzd.megatask.dataClass.Tasks
 import com.nzd.megatask.database.AppDataBase
-import kotlinx.android.synthetic.main.fragment_task.*
+import com.nzd.megatask.database.MegaSharedPreferences
 import kotlinx.android.synthetic.main.fragment_task.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.koin.android.ext.android.inject
 
-class TaskFragment : Fragment() , ActionTasksItems {
+class TaskFragment : Fragment(), ActionTasksItems {
 
-    private val database : AppDataBase by inject()
+    private val database: AppDataBase by inject()
     private val tasks = arrayListOf<Tasks>()
-    private lateinit var adapterTask : TaskAdapter
+    private lateinit var adapterTask: TaskAdapter
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        //set list Tasks from database to list recycler view
-        if(tasks.size == 0)
-        tasks.addAll(database.getDao().getAll())
-
-        //for week recycler view
         val view = inflater.inflate(R.layout.fragment_task, container, false)
-            view.week_rc.layoutManager = LinearLayoutManager(requireContext(),
-                RecyclerView.HORIZONTAL, false)
-        view.week_rc.adapter = WeekDaysAdapter(weekDay())
-
-        //for task recycler view
-        view.task_rc.layoutManager = LinearLayoutManager(requireContext(),
-            RecyclerView.VERTICAL, false)
-        adapterTask = TaskAdapter(requireContext() , tasks , this)
-        view.task_rc.adapter = adapterTask
 
         return view
     }
 
-    override fun addToPriory(tasks: Tasks) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //set list Tasks from database to list recycler view
+        if (tasks.size == 0)
+            tasks.addAll(database.getDao().getAll())
+        else
+            MegaSharedPreferences(requireContext()).setId(tasks.size)
+        //for week recycler view
+        view.week_rc.layoutManager = LinearLayoutManager(
+            requireContext(),
+            RecyclerView.HORIZONTAL, false
+        )
+        view.week_rc.adapter = WeekDaysAdapter(weekDay())
+
+        //for task recycler view
+        view.task_rc.layoutManager = LinearLayoutManager(
+            requireContext(),
+            RecyclerView.VERTICAL, false
+        )
+        adapterTask = TaskAdapter(requireContext(), tasks, this)
+        view.task_rc.adapter = adapterTask
+    }
+
+    override fun addToPriory(task: Tasks) {
 
     }
 
-    override fun done(tasks: Tasks) {
-        database.getDao().updateToDone(tasks.id , tasks.isDown)
+    override fun done(task: Tasks) {
+        task.isDown = true
+        val i = database.getDao().update(task)
+        adapterTask.adapterUpdate(task)
+
+        Toast.makeText(requireContext(), "$i", Toast.LENGTH_SHORT).show()
     }
 
-    override fun doing(tasks: Tasks) {
-        Toast.makeText(requireContext(), "doing", Toast.LENGTH_SHORT).show()
+    override fun edit(task: Tasks) {
+        val dialogTask = DialogManager.TaskDialog(requireContext())
+        dialogTask.setTitleTask(task.title)
+        dialogTask.setDescriptionTask(task.description)
+        dialogTask.setDayTask(task.date)
+        dialogTask.setOnClickListener {
+            task.title = dialogTask.getTitleTask()
+            task.description = dialogTask.getDescriptionTask()
+            task.date = dialogTask.getDayTask()
+            val i = database.getDao().update(task)
+            adapterTask.adapterUpdate(task)
+
+            Toast.makeText(requireContext(), "$i", Toast.LENGTH_SHORT).show()
+        }
+        dialogTask.build()
     }
 
-    override fun edit(tasks: Tasks) {
-        Toast.makeText(requireContext(), "edit", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun delete(tasks: Tasks) {
-        Toast.makeText(requireContext(), "delete", Toast.LENGTH_SHORT).show()
+    override fun delete(task: Tasks) {
+        val i = database.getDao().delete(task)
+        Toast.makeText(requireContext(), "$i", Toast.LENGTH_SHORT).show()
+        if (i == 1)
+            adapterTask.delete(task)
     }
 
     override fun onStart() {
@@ -86,10 +110,11 @@ class TaskFragment : Fragment() , ActionTasksItems {
     }
 
     @Subscribe
-    fun onTask(task: Tasks){
+    fun onTask(task: Tasks) {
         adapterTask.insert(task)
         val i = database.getDao().insert(task)
-        Log.i("TAG", "onTask: $i")
+        Toast.makeText(requireContext(), "$i", Toast.LENGTH_SHORT).show()
+        Log.i("TAG", "onTask: $task , $i")
     }
 
 }

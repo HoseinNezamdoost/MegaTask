@@ -37,6 +37,7 @@ class TaskFragment : Fragment() , ActionTasksItems {
     ): View? {
 
         //set list Tasks from database to list recycler view
+        if(tasks.size == 0)
         tasks.addAll(database.getDao().getAll())
 
         //for week recycler view

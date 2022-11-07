@@ -10,12 +10,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/dark700">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_selector">
+            android:background="@color/dark500">
 
             <ImageView
                 android:id="@+id/icon_dialog"
@@ -49,15 +50,19 @@
                 android:hint="@string/title_work"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
+                android:textColorHint="@color/gray"
                 android:layout_marginTop="12dp"
-                app:boxStrokeColor="@color/purple500"
+                app:boxStrokeColor="@color/gray"
+                app:hintTextColor="@color/gray"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/titleTask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,16 +70,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/task_description"
+                android:textColorHint="@color/gray"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginStart="12dp"
-                app:boxStrokeColor="@color/purple500"
+                app:boxStrokeColor="@color/gray"
+                app:hintTextColor="@color/gray"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/descriptionTask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -93,8 +101,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/time"
                     android:inputType="none"
+                    android:backgroundTint="@color/dark700"
                     android:padding="8dp"
-                    android:textColor="@color/gray"/>
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,10 +120,12 @@
                     android:layout_weight="1"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
+                    android:textColor="@color/dark700"
                     android:layout_marginBottom="12dp"
                     android:text="@string/add"
                     android:layout_marginEnd="12dp"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="24dp"
+                    android:backgroundTint="@color/purple"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/cancelBtn"
@@ -125,9 +136,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="12dp"
                     android:text="@string/cancel"
+                    android:textColor="@color/purple"
+                    app:strokeColor="@color/purple"
                     android:layout_marginEnd="24dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    app:strokeColor="@color/purple200"
                     android:layout_marginStart="12dp" />
 
             </LinearLayout>

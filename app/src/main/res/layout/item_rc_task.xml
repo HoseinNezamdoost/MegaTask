@@ -12,13 +12,13 @@
         android:id="@+id/background_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple700">
+        android:background="@color/green">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/dark500"
             android:background="@drawable/bg_rc_task">
 
             <ImageView
@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:background="@drawable/bg_circle_green"
                 android:padding="8dp"
-                android:textColor="@color/white"
+                android:textColor="@color/dark700"
                 android:textSize="18sp"
                 tools:text="سل" />
 
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_toEndOf="@id/prof_tv"
                 android:layout_alignTop="@id/prof_tv"
                 android:layout_toStartOf="@id/icon_menu"
@@ -83,7 +83,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/gray"
+                app:tint="@color/purple"
                 android:background="?selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"
                 android:layout_alignParentEnd="true"

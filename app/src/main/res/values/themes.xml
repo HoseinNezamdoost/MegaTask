@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.MegaTask" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple500</item>
-        <item name="colorPrimaryVariant">@color/purple700</item>
+        <item name="colorPrimary">@color/dark500</item>
+        <item name="colorPrimaryVariant">@color/dark700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/purple500</item>
-        <item name="colorSecondaryVariant">@color/purple700</item>
+        <item name="colorSecondary">@color/dark500</item>
+        <item name="colorSecondaryVariant">@color/dark700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
@@ -15,4 +15,14 @@
         <item name="android:layoutDirection">rtl</item>
         <item name="android:fontFamily">@font/yekan</item>
     </style>
+
+    <style name="MegaBottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextColor">@color/item_text_color_nav</item>
+        <item name="itemIconTint">@color/item_text_color_nav</item>
+        <item name="itemTextAppearanceActive">@style/MegaTextSize</item>
+    </style>
+    <style name="MegaTextSize" parent="TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/yekan_bold</item>
+    </style>
+
 </resources>

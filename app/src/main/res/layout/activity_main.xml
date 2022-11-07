@@ -4,53 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark700"
     tools:context=".view.MainActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="@drawable/bg_selector">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:text="سه شنبه , 1401,8,2"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_add" />
-
-            </RelativeLayout>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="56dp"
         app:defaultNavHost="true"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:navGraph="@navigation/nav_main" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -59,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:fabCradleMargin="10dp"
+        android:backgroundTint="@color/dark500"
         app:fabCradleRoundedCornerRadius="30dp"
         app:fabCradleVerticalOffset="10dp">
 
@@ -68,7 +32,9 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
-            app:menu="@menu/bottom_nav_menu" />
+            android:backgroundTint="@android:color/transparent"
+            app:menu="@menu/bottom_nav_menu"
+            style="@style/MegaBottomNavigation"/>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -76,10 +42,11 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
         app:layout_anchor="@id/bottomAppBar"
-        app:tint="@android:color/white" />
+        app:tint="@color/dark700" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_task"
@@ -92,7 +59,7 @@
         app:fabSize="mini"
         app:layout_anchor="@id/fab"
         app:layout_anchorGravity="start"
-        app:tint="@android:color/white" />
+        app:tint="@color/purple" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_sign"
@@ -106,6 +73,6 @@
         app:fabSize="mini"
         app:layout_anchor="@id/fab"
         app:layout_anchorGravity="end"
-        app:tint="@android:color/white" />
+        app:tint="@color/purple" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

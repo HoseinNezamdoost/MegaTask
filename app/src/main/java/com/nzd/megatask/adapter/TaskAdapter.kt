@@ -47,13 +47,13 @@ class TaskAdapter(
                 containerView.background_task.setBackgroundColor(
                     ContextCompat.getColor(
                         context,
-                        R.color.red
+                        R.color.purple
                     )
                 )
                 containerView.prof_tv.setBackgroundDrawable(
                     ContextCompat.getDrawable(
                         context,
-                        R.drawable.bg_circle_red
+                        R.drawable.bg_circle_purple
                     )
                 )
             }

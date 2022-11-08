@@ -52,7 +52,7 @@ class TaskFragment : Fragment(), ActionTasksItems {
             requireContext(),
             RecyclerView.HORIZONTAL, false
         )
-        view.week_rc.adapter = WeekDaysAdapter(weekDay())
+        view.week_rc.adapter = WeekDaysAdapter(requireContext() ,weekDay())
 
         //for task recycler view
         view.task_rc.layoutManager = LinearLayoutManager(

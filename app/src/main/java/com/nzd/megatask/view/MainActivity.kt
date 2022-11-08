@@ -23,8 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //get last id from SharedPreferences for continue adding id
         val sharedPreferences = MegaSharedPreferences(this)
         var id = sharedPreferences.getId()
+
         //bottomNavigation
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(1).isEnabled = false
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             val taskDialogManager = DialogManager.TaskDialog(this)
             taskDialogManager
                 .setOnClickListener {
+                    //last id shared preferences
                     id += 1
                     sharedPreferences.setId(id)
                     val task = Tasks(

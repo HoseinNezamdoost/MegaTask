@@ -41,8 +41,8 @@ class TaskAdapter(
                         R.drawable.bg_circle_green
                     )
                 )
-                containerView.title_tv.paintFlags = containerView.title_tv.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                containerView.description_tv.paintFlags = containerView.description_tv.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                containerView.title_tv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                containerView.description_tv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }else{
                 containerView.background_task.setBackgroundColor(
                     ContextCompat.getColor(
@@ -109,8 +109,8 @@ class TaskAdapter(
                                 R.drawable.bg_circle_green
                             )
                         )
-                        containerView.title_tv.paintFlags = containerView.title_tv.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                        containerView.description_tv.paintFlags = containerView.description_tv.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        containerView.title_tv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                        containerView.description_tv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                     }
                     R.id.edit -> actionTasksItems.edit(task)
                     R.id.delete -> actionTasksItems.delete(task)

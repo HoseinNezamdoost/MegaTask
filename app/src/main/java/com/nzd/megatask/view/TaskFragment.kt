@@ -14,9 +14,11 @@ import com.nzd.megatask.R
 import com.nzd.megatask.adapter.TaskAdapter
 import com.nzd.megatask.adapter.WeekDaysAdapter
 import com.nzd.megatask.common.ActionTasksItems
+import com.nzd.megatask.common.ActionWeekItems
 import com.nzd.megatask.common.DialogManager
 import com.nzd.megatask.common.weekDay
 import com.nzd.megatask.dataClass.Tasks
+import com.nzd.megatask.dataClass.WeekDays
 import com.nzd.megatask.database.AppDataBase
 import com.nzd.megatask.database.MegaSharedPreferences
 import kotlinx.android.synthetic.main.fragment_task.view.*
@@ -24,10 +26,11 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
 
-class TaskFragment : Fragment(), ActionTasksItems {
+class TaskFragment : Fragment(), ActionTasksItems , ActionWeekItems{
 
     private val database: AppDataBase by inject()
     private val tasks = arrayListOf<Tasks>()
+    private val tasksSorted = arrayListOf<Tasks>()
     private lateinit var adapterTask: TaskAdapter
 
     @SuppressLint("SuspiciousIndentation")
@@ -47,19 +50,26 @@ class TaskFragment : Fragment(), ActionTasksItems {
             tasks.addAll(database.getDao().getAll())
         else
             MegaSharedPreferences(requireContext()).setId(tasks.size)
+        if (tasksSorted.size == 0){
+            tasks.forEach {
+                if (it.date == weekDay()[0].day){
+                    tasksSorted.add(it)
+                }
+            }
+        }
         //for week recycler view
         view.week_rc.layoutManager = LinearLayoutManager(
             requireContext(),
             RecyclerView.HORIZONTAL, false
         )
-        view.week_rc.adapter = WeekDaysAdapter(requireContext() ,weekDay())
+        view.week_rc.adapter = WeekDaysAdapter(requireContext() ,weekDay() , this)
 
         //for task recycler view
         view.task_rc.layoutManager = LinearLayoutManager(
             requireContext(),
             RecyclerView.VERTICAL, false
         )
-        adapterTask = TaskAdapter(requireContext(), tasks, this)
+        adapterTask = TaskAdapter(requireContext(), tasksSorted, this)
         view.task_rc.adapter = adapterTask
     }
 
@@ -113,8 +123,19 @@ class TaskFragment : Fragment(), ActionTasksItems {
     fun onTask(task: Tasks) {
         adapterTask.insert(task)
         val i = database.getDao().insert(task)
+        tasks.add(task)
         Toast.makeText(requireContext(), "$i", Toast.LENGTH_SHORT).show()
         Log.i("TAG", "onTask: $task , $i")
+    }
+
+    override fun onClickWeeks(weekDays: WeekDays) {
+        tasksSorted.clear()
+        tasks.forEach {
+            if (it.date == weekDays.day){
+                tasksSorted.add(it)
+            }
+        }
+        adapterTask.notifyDataSetChanged()
     }
 
 }

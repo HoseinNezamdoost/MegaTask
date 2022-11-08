@@ -10,12 +10,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.nzd.megatask.R
+import com.nzd.megatask.common.ActionWeekItems
 import com.nzd.megatask.common.implementSpringAnimationTrait
 import com.nzd.megatask.dataClass.WeekDays
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_rc_week.view.*
 
-class WeekDaysAdapter(val context: Context, private val weeks: List<WeekDays>) :
+class WeekDaysAdapter(val context: Context, private val weeks: List<WeekDays> ,val actionWeekItems: ActionWeekItems) :
     RecyclerView.Adapter<WeekDaysViewHolder>() {
 
     var rowItem = 0
@@ -29,6 +30,7 @@ class WeekDaysAdapter(val context: Context, private val weeks: List<WeekDays>) :
     override fun onBindViewHolder(holder: WeekDaysViewHolder, position: Int) {
         holder.layout.implementSpringAnimationTrait()
         holder.layout.setOnClickListener {
+            actionWeekItems.onClickWeeks(weeks[position])
             rowItem = position
             notifyDataSetChanged()
         }
